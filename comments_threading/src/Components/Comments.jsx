@@ -63,7 +63,12 @@ export class Comments extends React.Component {
     }
 
     handleReply = (payload, id) => {
-        payload.id = uuid();
+        if(!id){
+            this.setState({
+                comments: [...this.state.comments, {...payload}]
+            })
+            return;
+        }
         this.findByIdAndUpdate(id, payload, this.state.comments);
     }
 
@@ -73,7 +78,7 @@ export class Comments extends React.Component {
         const comments = this.state.comments;
 
         return <div>
-            <Form />
+            <Form handleFormStyle={this.handleReply} id={null} />
             <ul>
                 {
                     comments?.map((el) => {
