@@ -1,0 +1,12 @@
+.App {
+  /* text-align: center; */
+  margin: 20px;
+}
+
+li {
+  list-style-type: none;
+}
+
+h3, h5 {
+  margin: 10px 0px;
+}
