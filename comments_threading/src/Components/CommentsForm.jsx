@@ -32,6 +32,9 @@ export class Form extends React.Component {
     handleSubmit = (e) => {
         let payload = this.state.payload;
         payload.id = uuid();
+        this.setState({
+            payload: {...payload, ["body"]: ""}
+        })
         this.props.handleFormStyle(payload, this.props.id);
     }
 

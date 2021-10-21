@@ -1,7 +1,6 @@
 import React from "react";
 import { CommentCard } from "./CommentCard";
 import { Form } from "./CommentsForm";
-import { v4 as uuid } from "uuid";
 
 export class Comments extends React.Component {
     constructor(props) {
@@ -45,7 +44,7 @@ export class Comments extends React.Component {
         }
 
         data.map((el) => {
-            if(el.id == id){
+            if(el.id === id){
                 let temp = el;
                 if(!temp.replies){
                     temp.replies = []

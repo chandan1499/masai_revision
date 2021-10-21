@@ -31,7 +31,7 @@ export class CommentCard extends React.Component {
         const showLists = this.state.showLists;
 
         return <div>
-            <button onClick={this.handleListStyle} style={{background: "none"}}>+</button>
+            <button onClick={this.handleListStyle} style={{background: "none"}}>{showLists ? "-" : "+"}</button>
             <div style={{ borderLeft: "5px solid #383838", paddingLeft: "10px", display: `${showLists ? "inherit" : "none"}` }}>
                 <li>
                     <h3>{comments.author}  {comments.points} Points 10 hours ago</h3>
