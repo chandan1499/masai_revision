@@ -10,7 +10,7 @@ export class Comments extends React.Component {
             comments: [
                 {
                     id: "001",
-                    author: "albert",
+                    author: "Chandan Gupta",
                     body: "Whats the status?",
                     timestamp: "Sun Aug 02 2020 18:08:45 GMT+0530",
                     points: "2",
