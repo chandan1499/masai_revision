@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const seriesSchema = new mongoose.Schema({
-    name: {
+    series_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "series",
         required: true,

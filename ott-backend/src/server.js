@@ -4,6 +4,7 @@ const movieController = require('./controllers/movie.controller');
 const userController = require('./controllers/user.controller').router;
 const musicController = require('./controllers/song.controller');
 const seriesController = require('./controllers/series.controller');
+const episodeController = require('./controllers/seriesClips.controller');
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use('/movies', movieController);
 app.use('/users', userController);
 app.use('/music', musicController);
 app.use('/series', seriesController);
+app.use('/episode', episodeController);
 
 const start = async () => {
     await connect();
