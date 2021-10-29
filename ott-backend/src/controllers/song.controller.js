@@ -1,5 +1,5 @@
 const express = require('express');
-const Movie = require('../models/movie.model');
+const Music = require('../models/music.model');
 const authentication = require('../middleware/authenticate');
 
 const router = express.Router();
@@ -14,16 +14,16 @@ router.get('/', authentication, async (req, res) => {
             return res.status(200).json({ status: "success", message: "Upgrade to basic or premium plans to see more", user: [] });
         }
 
-        const movies = await Movie.find().skip(offset).limit(perPage).lean().exec();
+        const songs = await Music.find().skip(offset).limit(perPage).lean().exec();
 
-        let dataCnt = await Movie.find().countDocuments();
+        let dataCnt = await Music.find().countDocuments();
         if (req.body.user.planType == "guest") {
             console.log(req.body.user);
             dataCnt = (dataCnt > 20) ? 20 : dataCnt;
         }
         const totalPage = Math.ceil(dataCnt / perPage);
 
-        return res.status(200).json({ movies, totalPage });
+        return res.status(200).json({ songs, totalPage });
     }
     catch (err) {
         return res.status(400).json({ status: "failed", message: err.message });
@@ -38,9 +38,9 @@ router.post('/', authentication, async (req, res) => {
                 payload[key] = req.body[key];
             }
         }
-        const movie = await Movie.create(payload);
+        const music = await Music.create(payload);
 
-        return res.status(201).json({ movie });
+        return res.status(201).json({ music });
     }
     catch (err) {
         return res.status(400).json({ status: "failed", message: err.messageF })
@@ -56,9 +56,9 @@ router.patch("/:id", authentication, async (req, res) => {
             }
         }
 
-        const movie = await Movie.findByIdAndUpdate(req.params.id, payload, { new: true });
+        const music = await Music.findByIdAndUpdate(req.params.id, payload, { new: true });
 
-        return res.status(200).json({ movie: movie })
+        return res.status(200).json({ music })
     }
     catch (err) {
         return res.status(400).json({ status: "failed", message: err.message })
@@ -67,7 +67,7 @@ router.patch("/:id", authentication, async (req, res) => {
 
 router.delete("/:id", authentication, async (req, res) => {
     try {
-        await Movie.deleteById(req.params.id);
+        await Music.deleteById(req.params.id);
 
         return res.status(200).json({status: "success"});
     }

@@ -69,7 +69,9 @@ router.patch('/', authentication, async (req, res) => {
 
         let user = await User.findByIdAndUpdate(req.body.user._id, payload, { new: true });
 
-        return res.status(200).json({ user });
+        let token = newToken(user);
+
+        return res.status(200).json({ token });
     }
     catch (err) {
         return res.status(400).json({ status: "failed", message: err.message });
